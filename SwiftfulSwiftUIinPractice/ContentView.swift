@@ -6,10 +6,35 @@
 //
 
 import SwiftUI
+import SwiftfulUI
+import SwiftfulRouting
 
 struct ContentView: View {
+    
+    @State private var users: [User] = []
+    @State private var products: [Product] = []
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack {
+                ForEach(users) { user in
+                    Text(user.firstName)
+                }
+            }
+        }
+        .padding()
+        .task {
+            await getData()
+        }
+    }
+    
+    private func getData() async {
+        do {
+            users = try await DatabaseHelper().getUsers()
+            products = try await DatabaseHelper().getProducts()
+        } catch {
+            
+        }
     }
 }
 

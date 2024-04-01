@@ -11,6 +11,7 @@ import SwiftUI
 struct SwiftfulSwiftUIinPracticeApp: App {
     var body: some Scene {
         WindowGroup {
+            //ImageLoaderView()
             ContentView()
         }
     }

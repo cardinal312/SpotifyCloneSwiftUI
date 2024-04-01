@@ -4,20 +4,31 @@
 //
 //  Created by Macbook on 30/3/24.
 //
-
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ImageLoaderView: View {
-    //TODO: Need install SDWebImageSwiftUI
+    
+    var urlString: String = Constants.randomImage
+    var resizingMode: ContentMode = .fill
+    
     var body: some View {
-        Image(systemName: "car")
-            .resizable()
-            .scaledToFill()
-            .frame(width: 100, height: 100)
-            .foregroundStyle(.spotifyGreen)
+        Rectangle()
+            .opacity(0.001)
+            .overlay {
+                WebImage(url: URL(string: urlString))
+                    .resizable()
+                    .indicator(.activity)
+                    .aspectRatio(contentMode: resizingMode)
+                    .allowsHitTesting(false)
+            }
+            .clipped()
     }
 }
 
 #Preview {
     ImageLoaderView()
+        .cornerRadius(30)
+        .padding(40)
+        .padding(.vertical, 60)
 }

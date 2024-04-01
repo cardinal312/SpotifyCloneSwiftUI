@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct SpotifyHomeView: View {
+    
+    @State private var cuttentUser: User? = nil
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.spotifyBlack.ignoresSafeArea()
+            
+            HStack {
+                if let cuttentUser {
+                    Image("animal")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 30, height: 30)
+                        .background(.spotifyWhite)
+                        .clipShape(Circle())
+                        .onTapGesture {
+                            print("Hello from spotify)))")
+                        }
+                }
+                
+    
+            }
+        }
     }
 }
 
